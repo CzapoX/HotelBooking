@@ -1,7 +1,6 @@
 ﻿using HotelBooking.Data;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Linq;
 
 namespace HotelBooking.Services
 {
