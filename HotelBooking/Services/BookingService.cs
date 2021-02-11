@@ -34,13 +34,37 @@ namespace HotelBooking.Services
 
             reservation.HowManyDays = GetNumberOfDaysFromUser();
 
+            reservation.NumberOfPeople = GetNumberOfPeopleFromUser();
+            reservation.ReservationNumber = Guid.NewGuid();
+
+            reservation.IsBookingSuccessful = true;
+        }
+
+        public int GetNumberOfPeopleFromUser()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Podaj dla ilu osób rezerwowane jest miejsce w hotelu");
+            int result;
+            if (ValidateNumberFromConsole(out result))
+            {
+                Console.WriteLine();
+                Console.WriteLine("Podana wartość jest niepoprawna");
+                GetNumberOfPeopleFromUser();
+            }
+
+            return result;
+        }
+
+        private bool ValidateNumberFromConsole(out int result)
+        {
+            return int.TryParse(Console.ReadLine(), out result) == false || result < 1;
         }
 
         private int GetNumberOfDaysFromUser()
         {
             Console.WriteLine();
-            Console.WriteLine("Wybierz ile dni ma trwać pobyt");
-            if (int.TryParse(Console.ReadLine(), out int result) == false || result < 1)
+            Console.WriteLine("Podaj ile dni ma trwać pobyt");
+            if (ValidateNumber(out result))
             {
                 Console.WriteLine();
                 Console.WriteLine("Podana wartość jest niepoprawna");
@@ -53,7 +77,7 @@ namespace HotelBooking.Services
         private DateTime GetChosenReservationDateFromUser()
         {
             Console.WriteLine();
-            Console.WriteLine("Wybierz dzień który chcesz zarezerwować");
+            Console.WriteLine("Podaj dzień który chcesz zarezerwować");
             
             if (DateTime.TryParse(Console.ReadLine(), out DateTime reservationDate) == false)
             {
