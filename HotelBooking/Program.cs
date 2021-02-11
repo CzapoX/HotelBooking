@@ -15,6 +15,7 @@ namespace HotelBooking
             {
                 services.AddTransient<IBookingService, BookingService>();
                 services.AddTransient<HotelDbContext>();
+                services.AddTransient<IConsoleService, ConsoleService>();
             }).Build();
 
             var dbContext = ActivatorUtilities.CreateInstance<HotelDbContext>(host.Services);

@@ -1,16 +1,19 @@
 ﻿using HotelBooking.Data;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelBooking.Services
 {
     class BookingService : IBookingService
     {
+        private readonly IConsoleService consoleService;
+
+        public BookingService(IConsoleService consoleService)
+        {
+            this.consoleService = consoleService;
+        }
+
         public void Run(List<Hotel> hotels, Reservation reservation)
         {
             Console.WriteLine("ID; Nazwa;         Lokalizacja; Cena za pokój na jedną noc, na osobę");
@@ -23,8 +26,7 @@ namespace HotelBooking.Services
 
             while (!hotels.Any(x => x.Id == chosenHotelId))
             {
-                Console.WriteLine();
-                Console.WriteLine("Podane Id hotelu nie istnieje");
+                consoleService.WriteToConsole("Podane Id hotelu nie istnieje");
                 chosenHotelId = GetChoosenHotelIdFromUser();
             }
 
@@ -42,73 +44,37 @@ namespace HotelBooking.Services
 
         public int GetNumberOfPeopleFromUser()
         {
-            Console.WriteLine();
-            Console.WriteLine("Podaj dla ilu osób rezerwowane jest miejsce w hotelu");
-            int result;
-            if (ValidateNumberFromConsole(out result))
-            {
-                Console.WriteLine();
-                Console.WriteLine("Podana wartość jest niepoprawna");
-                GetNumberOfPeopleFromUser();
-            }
+            consoleService.WriteToConsole("Podaj dla ilu osób rezerwowane jest miejsce w hotelu");
+            var result = consoleService.GetNumberFromUser();
 
             return result;
         }
 
-        private bool ValidateNumberFromConsole(out int result)
-        {
-            return int.TryParse(Console.ReadLine(), out result) == false || result < 1;
-        }
-
         private int GetNumberOfDaysFromUser()
         {
-            Console.WriteLine();
-            Console.WriteLine("Podaj ile dni ma trwać pobyt");
-            if (ValidateNumber(out result))
-            {
-                Console.WriteLine();
-                Console.WriteLine("Podana wartość jest niepoprawna");
-                GetNumberOfDaysFromUser();
-            }
+            consoleService.WriteToConsole("Podaj ile dni ma trwać pobyt");
+            var result = consoleService.GetNumberFromUser();
 
             return result;
         }
 
         private DateTime GetChosenReservationDateFromUser()
         {
-            Console.WriteLine();
-            Console.WriteLine("Podaj dzień który chcesz zarezerwować");
-            
-            if (DateTime.TryParse(Console.ReadLine(), out DateTime reservationDate) == false)
-            {
-                Console.WriteLine("Podałeś nieprawidłową datę");
-                GetChosenReservationDateFromUser();
-            }
-
-            if (reservationDate < DateTime.Now)
-            {
-                Console.WriteLine("Podałeś za wczesną datę");
-                GetChosenReservationDateFromUser();
-            }
+            consoleService.WriteToConsole("Podaj dzień który chcesz zarezerwować");
+            var reservationDate =  consoleService.GetDateTimeFromUser();
             
             return reservationDate;
         }
 
         private int GetChoosenHotelIdFromUser()
         {
-            Console.WriteLine();
-            Console.WriteLine("Podaj Id hotelu w którym chciałbyś zarezerwować pokój");
-            
-            if (int.TryParse(Console.ReadLine(), out int result) == false)
-            {
-                Console.WriteLine();
-                Console.WriteLine("Podana wartość jest niepoprawna");
-                GetChoosenHotelIdFromUser();
-            }
+            consoleService.WriteToConsole("Podaj Id hotelu w którym chciałbyś zarezerwować pokój");
+            var result = consoleService.GetNumberFromUser();
 
             return result;
         }
     }
+
 
     internal interface IBookingService
     {
