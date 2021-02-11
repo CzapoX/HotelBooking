@@ -221,6 +221,7 @@
     <Compile Include="Services\ConsoleService.cs" />
     <Compile Include="Services\EmailSenderService.cs" />
     <Compile Include="Services\PaymentService.cs" />
+    <Compile Include="Services\PriceCheckService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

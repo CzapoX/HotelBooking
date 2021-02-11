@@ -18,6 +18,7 @@ namespace HotelBooking
                 services.AddTransient<HotelDbContext>();
                 services.AddTransient<IConsoleService, ConsoleService>();
                 services.AddTransient<IPaymentService, PaymentService>();
+                services.AddTransient<IPriceCheckService, PriceCheckService>();
             }).Build();
 
             var dbContext = ActivatorUtilities.CreateInstance<HotelDbContext>(host.Services);
@@ -30,6 +31,9 @@ namespace HotelBooking
 
             var bookingService = ActivatorUtilities.CreateInstance<BookingService>(host.Services);
             bookingService.BeginBooking(hotelsCached, reservation);
+
+            var priceCheckService = ActivatorUtilities.CreateInstance<PriceCheckService>(host.Services);
+            priceCheckService.CheckIfPrizeIsStillCorrect(reservation);
 
             var paymentService = ActivatorUtilities.CreateInstance<PaymentService>(host.Services);
             paymentService.BeginPayment(reservation);
@@ -51,6 +55,7 @@ namespace HotelBooking
 
         private static void BookingSummary(Reservation reservation)
         {
+            Console.WriteLine();
             Console.WriteLine($"Podsumowanie rezerwacji o numerze: {reservation.ReservationNumber}");
             Console.WriteLine($"Status rezerwacji: { reservation.IsReservationSuccessful.TranslateToPolish()}");
             Console.WriteLine($"Status procesu wprowadzania informacji: {reservation.IsBookingSuccessful.TranslateToPolish()}");
