@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace HotelBooking.Services
 {
+    public interface IPaymentService
+    {
+        void BeginPayment(Reservation reservation);
+    }
+
     class PaymentService : IPaymentService
     {
         private readonly HotelDbContext dbContext;
@@ -75,10 +80,5 @@ namespace HotelBooking.Services
                 }
             }
         }
-    }
-
-    public interface IPaymentService
-    {
-        void BeginPayment(Reservation reservation);
     }
 }

@@ -5,6 +5,11 @@ using System.Linq;
 
 namespace HotelBooking.Services
 {
+    public interface IBookingService
+    {
+        void BeginBooking(List<Hotel> hotelsCached, Reservation reservation);
+    }
+
     public class BookingService : IBookingService
     {
         private readonly IConsoleService consoleService;
@@ -38,6 +43,7 @@ namespace HotelBooking.Services
             reservation.BasePrice = hotels.FirstOrDefault(x => x.Id == chosenHotelId).PriceForOnePerson;
             reservation.PriceToPay = reservation.NumberOfPeople * reservation.BasePrice * reservation.HowManyDays;
             reservation.IsBookingSuccessful = true;
+            reservation.IsReservationSuccessful = false;
         }
 
         public int GetNumberOfPeopleFromUser()
@@ -71,11 +77,5 @@ namespace HotelBooking.Services
 
             return result;
         }
-    }
-
-
-    public interface IBookingService
-    {
-        void BeginBooking(List<Hotel> hotelsCached, Reservation reservation);
     }
 }
