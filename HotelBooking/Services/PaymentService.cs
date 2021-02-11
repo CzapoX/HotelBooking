@@ -37,6 +37,8 @@ namespace HotelBooking.Services
                     return;
                 }
             }
+
+
             CheckIfPrizeIsStillCorrect(reservation);
 
             consoleService.WriteToConsole($"Do zapłaty ${reservation.PriceToPay}");

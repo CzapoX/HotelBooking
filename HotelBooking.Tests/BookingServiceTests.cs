@@ -14,7 +14,6 @@ namespace HotelBooking.Tests
         private readonly DateTime reservationDate = DateTime.Now;
         int numberWrittenByUser = 1;
         private readonly List<Hotel> hotels;
-        private readonly Hotel expectedHotel;
 
         public BookingServiceTests()
         {
