@@ -206,6 +206,10 @@
     <Compile Include="Migrations\202102111018286_Updated Reservation Table.designer.cs">
       <DependentUpon>202102111018286_Updated Reservation Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102111316213_Chages in Models.cs" />
+    <Compile Include="Migrations\202102111316213_Chages in Models.designer.cs">
+      <DependentUpon>202102111316213_Chages in Models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102111018286_Updated Reservation Table.resx">
       <DependentUpon>202102111018286_Updated Reservation Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111316213_Chages in Models.resx">
+      <DependentUpon>202102111316213_Chages in Models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

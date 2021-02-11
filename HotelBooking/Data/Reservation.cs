@@ -13,7 +13,6 @@ namespace HotelBooking.Data
         public Hotel Hotel { get; set; }
         public Guid ReservationNumber { get; set; }
         public string Email { get; set; }
-        public bool IsPaid { get; set; }
         public bool IsPaymentSuccessful { get; set; }
         public bool IsBookingSuccessful { get; set; }
         public bool IsEmailSendSuccessful { get; set; }
