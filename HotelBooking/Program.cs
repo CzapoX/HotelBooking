@@ -1,4 +1,5 @@
 ﻿using HotelBooking.Data;
+using HotelBooking.Helpers;
 using HotelBooking.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

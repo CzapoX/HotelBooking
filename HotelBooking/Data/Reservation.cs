@@ -21,15 +21,4 @@ namespace HotelBooking.Data
         public bool IsReservationSuccessful { get; set; }
 
     }
-
-    public static class BooleanExtension
-    {
-        public static string TranslateToPolish(this bool status)
-        {
-            if (status == true)
-                return "Udane";
-            else
-                return "Nieudane";
-        }
-    }
 }

@@ -194,6 +194,7 @@
     <Compile Include="Data\Hotel.cs" />
     <Compile Include="Data\HotelDbContext.cs" />
     <Compile Include="Data\Reservation.cs" />
+    <Compile Include="Helpers\BooleanExtension.cs" />
     <Compile Include="Migrations\202102110821221_Initial-Migration.cs" />
     <Compile Include="Migrations\202102110821221_Initial-Migration.designer.cs">
       <DependentUpon>202102110821221_Initial-Migration.cs</DependentUpon>
