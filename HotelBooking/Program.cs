@@ -36,6 +36,9 @@ namespace HotelBooking
 
             CheckIfReservationCanBeContinued(reservation);
 
+            var emailSenderService = ActivatorUtilities.CreateInstance<EmailSenderService>(host.Services);
+            emailSenderService.SendConfirmationEmail(reservation);
+
         }
 
         private static void CheckIfReservationCanBeContinued(Reservation reservation)
