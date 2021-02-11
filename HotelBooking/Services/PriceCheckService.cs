@@ -37,6 +37,7 @@ namespace HotelBooking.Services
                 }
                 else
                 {
+                    reservation.BasePrice = priceFromDb;
                     reservation.PriceToPay = priceFromDb * reservation.NumberOfPeople * reservation.HowManyDays;
                 }
             }

@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="BookingServiceTests.cs" />
     <Compile Include="EmailSenderServiceTests.cs" />
+    <Compile Include="PaymentServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -214,6 +214,10 @@
     <Compile Include="Migrations\202102111320143_Added BasePricefo reservtion.designer.cs">
       <DependentUpon>202102111320143_Added BasePricefo reservtion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102111629276_Changed Reservatio Model.cs" />
+    <Compile Include="Migrations\202102111629276_Changed Reservatio Model.designer.cs">
+      <DependentUpon>202102111629276_Changed Reservatio Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102111320143_Added BasePricefo reservtion.resx">
       <DependentUpon>202102111320143_Added BasePricefo reservtion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111629276_Changed Reservatio Model.resx">
+      <DependentUpon>202102111629276_Changed Reservatio Model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

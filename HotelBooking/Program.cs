@@ -34,6 +34,12 @@ namespace HotelBooking
 
             var priceCheckService = ActivatorUtilities.CreateInstance<PriceCheckService>(host.Services);
             priceCheckService.CheckIfPrizeIsStillCorrect(reservation);
+            
+            if (!CheckIfReservationCanBeContinued(reservation))
+            {
+                BookingSummary(reservation);
+                return;
+            }
 
             var paymentService = ActivatorUtilities.CreateInstance<PaymentService>(host.Services);
             paymentService.BeginPayment(reservation);

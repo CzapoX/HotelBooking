@@ -28,7 +28,7 @@ namespace HotelBooking.Services
                 consoleService.WriteToConsole
                     ($"Hotel nie wymaga zapłaty w trakcie rezerwacji, cena do zapłaty to {reservation.PriceToPay}");
                 
-                consoleService.WriteToConsole("Czy chcesz zapłacić teraz? (Y/N)");
+                consoleService.WriteToConsole("Czy chcesz zapłacić teraz? (Y/N)"); 
                 if (consoleService.GetBoolFromUser() == false)
                 {
                     reservation.IsPaymentSuccessful = false;
@@ -36,7 +36,7 @@ namespace HotelBooking.Services
                 }
             }
 
-            consoleService.WriteToConsole($"Do zapłaty ${reservation.PriceToPay}");
+            consoleService.WriteToConsole($"Do zapłaty {reservation.PriceToPay}");
 
             consoleService.WriteToConsole
                 ("Rozpoczynamy transakcję, prosimy podać numer karty płatniczej (dowolne 4 cyfry)");
