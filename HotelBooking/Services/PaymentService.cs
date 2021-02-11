@@ -68,7 +68,8 @@ namespace HotelBooking.Services
             var priceFromDb = dbContext.Hotels.FirstOrDefault(x => x.Id == reservation.HotelId).PriceForOnePerson;
             if (priceFromDb != reservation.BasePrice)
             {
-                consoleService.WriteToConsole($"Cena rezerwacji uległa zmianie, nowa cena za noc, na jedną osobę to: {priceFromDb}");
+                consoleService.WriteToConsole
+                    ($"Cena rezerwacji uległa zmianie, nowa cena za noc, na jedną osobę to: {priceFromDb}");
                 consoleService.WriteToConsole("Czy chcesz kontynować rezerwację? (Y/N)");
 
                 if (consoleService.GetBoolFromUser() == false)
@@ -78,7 +79,7 @@ namespace HotelBooking.Services
                 }
                 else
                 {
-                    reservation.PriceToPay = priceFromDb * reservation.NumberOfPeople;
+                    reservation.PriceToPay = priceFromDb * reservation.NumberOfPeople * reservation.HowManyDays;
                 }
             }
         }

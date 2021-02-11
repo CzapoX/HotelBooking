@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace HotelBooking.Services
@@ -69,13 +70,26 @@ namespace HotelBooking.Services
         {
             //TODO regex to prove that card number is real 
             var input = Regex.Replace(ReadLine(), @"\s+", "");
-            if (int.TryParse(input, out int creditCardNumber) == false && input.Length != 4)
+            if (int.TryParse(input, out int creditCardNumber) == false && input.Length == 4)
             {
                 WriteToConsole("Podana wartość nie jest poprawnym numerem karty płatniczej");
                 return GetCreditCardFromUser();
             }
 
             return creditCardNumber;
+        }
+
+        public string GetEmailFromUser()
+        {
+            var input = ReadLine();
+            EmailAddressAttribute e = new EmailAddressAttribute();
+            if (e.IsValid(input))
+                return input;
+            else
+            {
+                WriteToConsole("Podany adres email jest nieprawidłowy");
+                return GetEmailFromUser();
+            }
         }
     }
 
@@ -86,5 +100,6 @@ namespace HotelBooking.Services
         int GetNumberFromUser();
         bool GetBoolFromUser();
         int GetCreditCardFromUser();
+        string GetEmailFromUser();
     }
 }
