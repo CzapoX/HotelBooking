@@ -2,6 +2,7 @@
 using HotelBooking.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,6 +33,18 @@ namespace HotelBooking
 
             var paymentService = ActivatorUtilities.CreateInstance<PaymentService>(host.Services);
             paymentService.BeginPayment(reservation);
+
+            CheckIfReservationCanBeContinued(reservation);
+
+        }
+
+        private static void CheckIfReservationCanBeContinued(Reservation reservation)
+        {
+            if (reservation.IsReservationSuccessful == false)
+            {
+                Console.WriteLine("Rezerwacja nie powiodła się prosimy spróbować ponownie");
+                return;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace HotelBooking.Services
 {
@@ -62,6 +63,19 @@ namespace HotelBooking.Services
                 return GetBoolFromUser();
             }
         }
+
+        public int GetCreditCardFromUser()
+        {
+            //TODO regex to prove that card number is real 
+            var input = Regex.Replace(ReadLine(), @"\s+", "");
+            if (int.TryParse(input, out int creditCardNumber) == false && input.Length != 16)
+            {
+                WriteToConsole("Podana wartość nie jest poprawnym numerem karty płatniczej");
+                return GetCreditCardFromUser();
+            }
+
+            return creditCardNumber;
+        }
     }
 
     public interface IConsoleService
@@ -70,5 +84,6 @@ namespace HotelBooking.Services
         DateTime GetDateTimeFromUser();
         int GetNumberFromUser();
         bool GetBoolFromUser();
+        int GetCreditCardFromUser();
     }
 }
