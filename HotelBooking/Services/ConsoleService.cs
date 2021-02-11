@@ -51,7 +51,7 @@ namespace HotelBooking.Services
     }
 
 
-    internal interface IConsoleService
+    public interface IConsoleService
     {
         void WriteToConsole(string text);
         DateTime GetDateTimeFromUser();

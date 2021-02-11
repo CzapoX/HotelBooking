@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace HotelBooking.Services
 {
-    class BookingService : IBookingService
+    public class BookingService : IBookingService
     {
         private readonly IConsoleService consoleService;
 
@@ -31,14 +31,11 @@ namespace HotelBooking.Services
             }
 
             reservation.HotelId = chosenHotelId;
-
+            reservation.Hotel = hotels.FirstOrDefault(x => x.Id == chosenHotelId);
             reservation.Date = GetChosenReservationDateFromUser();
-
             reservation.HowManyDays = GetNumberOfDaysFromUser();
-
             reservation.NumberOfPeople = GetNumberOfPeopleFromUser();
             reservation.ReservationNumber = Guid.NewGuid();
-
             reservation.IsBookingSuccessful = true;
         }
 
@@ -61,8 +58,8 @@ namespace HotelBooking.Services
         private DateTime GetChosenReservationDateFromUser()
         {
             consoleService.WriteToConsole("Podaj dzień który chcesz zarezerwować");
-            var reservationDate =  consoleService.GetDateTimeFromUser();
-            
+            var reservationDate = consoleService.GetDateTimeFromUser();
+
             return reservationDate;
         }
 
@@ -76,7 +73,7 @@ namespace HotelBooking.Services
     }
 
 
-    internal interface IBookingService
+    public interface IBookingService
     {
         void Run(List<Hotel> hotelsCached, Reservation reservation);
     }
