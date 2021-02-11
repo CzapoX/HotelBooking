@@ -10,7 +10,7 @@ namespace HotelBooking.Services
         void BeginPayment(Reservation reservation);
     }
 
-    class PaymentService : IPaymentService
+    public class PaymentService : IPaymentService
     {
         private readonly IConsoleService consoleService;
         private readonly ILogger<PaymentService> logger;
