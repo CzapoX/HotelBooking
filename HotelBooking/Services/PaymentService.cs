@@ -44,7 +44,7 @@ namespace HotelBooking.Services
             consoleService.WriteToConsole($"Do zapłaty ${reservation.PriceToPay}");
 
             consoleService.WriteToConsole
-                ("Rozpoczynamy transakcję, prosimy podać numer karty kredtyowej (dowolne 4 cyfry)");
+                ("Rozpoczynamy transakcję, prosimy podać numer karty płatniczej (dowolne 4 cyfry)");
             int creditCardNumber = consoleService.GetCreditCardFromUser();
 
             try

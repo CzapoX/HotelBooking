@@ -70,7 +70,7 @@ namespace HotelBooking.Services
         {
             //TODO regex to prove that card number is real 
             var input = Regex.Replace(ReadLine(), @"\s+", "");
-            if (int.TryParse(input, out int creditCardNumber) == false && input.Length == 4)
+            if (int.TryParse(input, out int creditCardNumber) == false || input.Length != 4)
             {
                 WriteToConsole("Podana wartość nie jest poprawnym numerem karty płatniczej");
                 return GetCreditCardFromUser();
