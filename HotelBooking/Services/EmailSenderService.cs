@@ -9,12 +9,12 @@ namespace HotelBooking.Services
         void SendConfirmationEmail(Reservation reservation);
     }
 
-    class EmailSenderService : IEmailSenderService
+    public class EmailSenderService : IEmailSenderService
     {
         private readonly IConsoleService consoleService;
-        private readonly ILogger<PaymentService> logger;
+        private readonly ILogger<EmailSenderService> logger;
 
-        public EmailSenderService(IConsoleService consoleService, ILogger<PaymentService> logger)
+        public EmailSenderService(IConsoleService consoleService, ILogger<EmailSenderService> logger)
         {
             this.consoleService = consoleService;
             this.logger = logger;
