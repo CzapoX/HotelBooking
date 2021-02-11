@@ -47,5 +47,21 @@ namespace HotelBooking.Tests
             Assert.Equal(reservation.NumberOfPeople, numberWrittenByUser);
             Assert.NotEqual(reservation.ReservationNumber, Guid.Empty);
         }
+
+        [Fact]
+        public void NumberShouldBeEqualToUserInput()
+        {
+            var result = sut.GetChoosenHotelIdFromUser();
+
+            Assert.Equal(result, numberWrittenByUser);
+        }
+
+        [Fact]
+        public void DateShouldBeEqualToReservationDate()
+        {
+            var result = sut.GetChosenReservationDateFromUser();
+
+            Assert.Equal(result, reservationDate);
+        }
     }
 }

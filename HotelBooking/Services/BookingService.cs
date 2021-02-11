@@ -46,7 +46,7 @@ namespace HotelBooking.Services
             reservation.IsReservationSuccessful = false;
         }
 
-        public int GetNumberOfPeopleFromUser()
+        private int GetNumberOfPeopleFromUser()
         {
             consoleService.WriteToConsole("Podaj dla ilu osób rezerwowane jest miejsce w hotelu");
             var result = consoleService.GetNumberFromUser();
@@ -62,7 +62,7 @@ namespace HotelBooking.Services
             return result;
         }
 
-        private DateTime GetChosenReservationDateFromUser()
+        public DateTime GetChosenReservationDateFromUser()
         {
             consoleService.WriteToConsole("Podaj dzień który chcesz zarezerwować");
             var reservationDate = consoleService.GetDateTimeFromUser();
@@ -70,7 +70,7 @@ namespace HotelBooking.Services
             return reservationDate;
         }
 
-        private int GetChoosenHotelIdFromUser()
+        public int GetChoosenHotelIdFromUser()
         {
             consoleService.WriteToConsole("Podaj Id hotelu w którym chciałbyś zarezerwować pokój");
             var result = consoleService.GetNumberFromUser();
