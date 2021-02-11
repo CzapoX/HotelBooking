@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelBooking.Data
+﻿namespace HotelBooking.Data
 {
     class Hotel
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Location { get; set; }
+        public decimal PriceForOnePerson { get; set; }
+        public bool IsPaymentNecessary { get; set; }
     }
 }
