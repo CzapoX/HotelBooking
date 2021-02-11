@@ -41,7 +41,7 @@ namespace HotelBooking.Tests
         {
             var reservation = new Reservation();
 
-            sut.Run(hotels, reservation);
+            sut.BeginBooking(hotels, reservation);
 
 
             Assert.Equal(reservation.Date, reservationDate);

@@ -27,7 +27,7 @@ namespace HotelBooking
             var reservation = new Reservation();
 
             var bookingService = ActivatorUtilities.CreateInstance<BookingService>(host.Services);
-            bookingService.Run(hotelsCached, reservation);
+            bookingService.BeginBooking(hotelsCached, reservation);
         }
     }
 }

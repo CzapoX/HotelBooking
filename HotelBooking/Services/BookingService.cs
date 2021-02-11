@@ -14,7 +14,7 @@ namespace HotelBooking.Services
             this.consoleService = consoleService;
         }
 
-        public void Run(List<Hotel> hotels, Reservation reservation)
+        public void BeginBooking(List<Hotel> hotels, Reservation reservation)
         {
             Console.WriteLine("ID; Nazwa;         Lokalizacja; Cena za pokój na jedną noc, na osobę");
             foreach (var hotel in hotels)
@@ -75,6 +75,6 @@ namespace HotelBooking.Services
 
     public interface IBookingService
     {
-        void Run(List<Hotel> hotelsCached, Reservation reservation);
+        void BeginBooking(List<Hotel> hotelsCached, Reservation reservation);
     }
 }
