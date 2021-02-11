@@ -4,6 +4,16 @@ using System.Text.RegularExpressions;
 
 namespace HotelBooking.Services
 {
+    public interface IConsoleService
+    {
+        void WriteToConsole(string text);
+        DateTime GetDateTimeFromUser();
+        int GetNumberFromUser();
+        bool GetBoolFromUser();
+        int GetCreditCardFromUser();
+        string GetEmailFromUser();
+    }
+
     class ConsoleService : IConsoleService
     {
         public void WriteToConsole(string text)
@@ -91,15 +101,5 @@ namespace HotelBooking.Services
                 return GetEmailFromUser();
             }
         }
-    }
-
-    public interface IConsoleService
-    {
-        void WriteToConsole(string text);
-        DateTime GetDateTimeFromUser();
-        int GetNumberFromUser();
-        bool GetBoolFromUser();
-        int GetCreditCardFromUser();
-        string GetEmailFromUser();
     }
 }
