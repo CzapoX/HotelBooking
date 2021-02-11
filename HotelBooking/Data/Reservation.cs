@@ -9,6 +9,7 @@ namespace HotelBooking.Data
         public int HowManyDays { get; set; }
         public int NumberOfPeople { get; set; }
         public decimal PriceToPay { get; set; }
+        public decimal BasePrice { get; set; }
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
         public Guid ReservationNumber { get; set; }

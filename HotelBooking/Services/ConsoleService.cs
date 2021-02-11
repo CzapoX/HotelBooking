@@ -52,9 +52,10 @@ namespace HotelBooking.Services
 
         public bool GetBoolFromUser()
         {
-            if (ReadLine().ToLower() == "y")
+            string userInput = ReadLine().ToLower();
+            if (userInput == "y")
                 return true;
-            if (ReadLine().ToLower() == "n")
+            if (userInput == "n")
                 return false;
 
             else
@@ -68,7 +69,7 @@ namespace HotelBooking.Services
         {
             //TODO regex to prove that card number is real 
             var input = Regex.Replace(ReadLine(), @"\s+", "");
-            if (int.TryParse(input, out int creditCardNumber) == false && input.Length != 16)
+            if (int.TryParse(input, out int creditCardNumber) == false && input.Length != 4)
             {
                 WriteToConsole("Podana wartość nie jest poprawnym numerem karty płatniczej");
                 return GetCreditCardFromUser();

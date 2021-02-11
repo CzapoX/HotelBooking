@@ -23,7 +23,8 @@ namespace HotelBooking.Services
             var chosenHotel = dbContext.Hotels.FirstOrDefault(x => x.Id == reservation.HotelId);
             if (chosenHotel.IsPaymentNecessary == false)
             {
-                consoleService.WriteToConsole("Hotel nie wymaga zapłaty w trakcie rezerwacji");
+                consoleService.WriteToConsole
+                    ($"Hotel nie wymaga zapłaty w trakcie rezerwacji, cena do zapłaty to {reservation.PriceToPay}");
                 consoleService.WriteToConsole("Czy chcesz zapłacić teraz? (Y/N)");
                 if (consoleService.GetBoolFromUser() == false)
                 {
@@ -33,8 +34,10 @@ namespace HotelBooking.Services
             }
             CheckIfPrizeIsStillCorrect(reservation);
 
+            consoleService.WriteToConsole($"Do zapłaty ${reservation.PriceToPay}");
+
             consoleService.WriteToConsole
-                ("Rozpoczynamy transakcję, prosimy podać numer karty kredtyowej (dowolne 16 cyfr)");
+                ("Rozpoczynamy transakcję, prosimy podać numer karty kredtyowej (dowolne 4 cyfry)");
             int creditCardNumber = consoleService.GetCreditCardFromUser();
 
             try
@@ -56,7 +59,7 @@ namespace HotelBooking.Services
         private void CheckIfPrizeIsStillCorrect(Reservation reservation)
         {
             var priceFromDb = dbContext.Hotels.FirstOrDefault(x => x.Id == reservation.HotelId).PriceForOnePerson;
-            if (priceFromDb != reservation.Hotel.PriceForOnePerson)
+            if (priceFromDb != reservation.BasePrice)
             {
                 consoleService.WriteToConsole($"Cena rezerwacji uległa zmianie, nowa cena za noc, na jedną osobę to: {priceFromDb}");
                 consoleService.WriteToConsole("Czy chcesz kontynować rezerwację? (Y/N)");

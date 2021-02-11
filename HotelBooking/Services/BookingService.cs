@@ -30,14 +30,13 @@ namespace HotelBooking.Services
                 chosenHotelId = GetChoosenHotelIdFromUser();
             }
 
-            var choosenHotelPrices = hotels.FirstOrDefault(x => x.Id == chosenHotelId).PriceForOnePerson;
-
             reservation.HotelId = chosenHotelId;
             reservation.Date = GetChosenReservationDateFromUser();
             reservation.HowManyDays = GetNumberOfDaysFromUser();
             reservation.NumberOfPeople = GetNumberOfPeopleFromUser();
             reservation.ReservationNumber = Guid.NewGuid();
-            reservation.PriceToPay = reservation.NumberOfPeople * choosenHotelPrices;
+            reservation.BasePrice = hotels.FirstOrDefault(x => x.Id == chosenHotelId).PriceForOnePerson;
+            reservation.PriceToPay = reservation.NumberOfPeople * reservation.BasePrice * reservation.HowManyDays;
             reservation.IsBookingSuccessful = true;
         }
 

@@ -210,6 +210,10 @@
     <Compile Include="Migrations\202102111316213_Chages in Models.designer.cs">
       <DependentUpon>202102111316213_Chages in Models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102111320143_Added BasePricefo reservtion.cs" />
+    <Compile Include="Migrations\202102111320143_Added BasePricefo reservtion.designer.cs">
+      <DependentUpon>202102111320143_Added BasePricefo reservtion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102111316213_Chages in Models.resx">
       <DependentUpon>202102111316213_Chages in Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102111320143_Added BasePricefo reservtion.resx">
+      <DependentUpon>202102111320143_Added BasePricefo reservtion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
