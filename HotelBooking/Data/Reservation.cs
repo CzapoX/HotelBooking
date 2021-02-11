@@ -6,6 +6,8 @@ namespace HotelBooking.Data
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
+        public int HowManyDays { get; set; }
+        public int NumberOfPeople { get; set; }
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
         public Guid ReservationNumber { get; set; }
