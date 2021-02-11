@@ -1,8 +1,8 @@
 ﻿using HotelBooking.Data;
 using HotelBooking.Services;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
-using Microsoft.Extensions.Logging;
 
 namespace HotelBooking.Tests
 {
