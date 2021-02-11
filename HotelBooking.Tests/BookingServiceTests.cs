@@ -30,9 +30,6 @@ namespace HotelBooking.Tests
                 }
              };
 
-            expectedHotel = hotels.FirstOrDefault(x => x.Id == numberWrittenByUser);
-
-
             sut = new BookingService(consoleService.Object);
         }
 
@@ -45,7 +42,6 @@ namespace HotelBooking.Tests
 
 
             Assert.Equal(reservation.Date, reservationDate);
-            Assert.Equal(reservation.Hotel, expectedHotel);
             Assert.Equal(reservation.HowManyDays, numberWrittenByUser);
             Assert.True(reservation.IsBookingSuccessful);
             Assert.Equal(reservation.NumberOfPeople, numberWrittenByUser);

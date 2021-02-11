@@ -16,6 +16,7 @@ namespace HotelBooking
                 services.AddTransient<IBookingService, BookingService>();
                 services.AddTransient<HotelDbContext>();
                 services.AddTransient<IConsoleService, ConsoleService>();
+                services.AddTransient<IPaymentService, PaymentService>();
             }).Build();
 
             var dbContext = ActivatorUtilities.CreateInstance<HotelDbContext>(host.Services);
@@ -28,6 +29,9 @@ namespace HotelBooking
 
             var bookingService = ActivatorUtilities.CreateInstance<BookingService>(host.Services);
             bookingService.BeginBooking(hotelsCached, reservation);
+
+            var paymentService = ActivatorUtilities.CreateInstance<PaymentService>(host.Services);
+            paymentService.BeginPayment(reservation);
         }
     }
 }

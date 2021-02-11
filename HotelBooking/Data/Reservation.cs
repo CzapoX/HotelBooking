@@ -8,6 +8,7 @@ namespace HotelBooking.Data
         public DateTime Date { get; set; }
         public int HowManyDays { get; set; }
         public int NumberOfPeople { get; set; }
+        public decimal PriceToPay { get; set; }
         public int HotelId { get; set; }
         public Hotel Hotel { get; set; }
         public Guid ReservationNumber { get; set; }

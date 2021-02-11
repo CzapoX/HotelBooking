@@ -48,13 +48,27 @@ namespace HotelBooking.Services
 
             return number;
         }
-    }
 
+        public bool GetBoolFromUser()
+        {
+            if (ReadLine().ToLower() == "y")
+                return true;
+            if (ReadLine().ToLower() == "n")
+                return false;
+
+            else
+            {
+                WriteToConsole("Wprowadzono nieprawidłowy znak");
+                return GetBoolFromUser();
+            }
+        }
+    }
 
     public interface IConsoleService
     {
         void WriteToConsole(string text);
         DateTime GetDateTimeFromUser();
         int GetNumberFromUser();
+        bool GetBoolFromUser();
     }
 }
