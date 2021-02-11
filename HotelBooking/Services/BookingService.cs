@@ -43,7 +43,9 @@ namespace HotelBooking.Services
             reservation.BasePrice = hotels.FirstOrDefault(x => x.Id == chosenHotelId).PriceForOnePerson;
             reservation.PriceToPay = reservation.NumberOfPeople * reservation.BasePrice * reservation.HowManyDays;
             reservation.IsBookingSuccessful = true;
-            reservation.IsReservationSuccessful = false;
+            reservation.IsReservationSuccessful = true;
+            reservation.IsEmailSendSuccessful = false;
+            reservation.IsPaymentSuccessful = false;
         }
 
         private int GetNumberOfPeopleFromUser()

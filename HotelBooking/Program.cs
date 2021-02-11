@@ -34,20 +34,40 @@ namespace HotelBooking
             var paymentService = ActivatorUtilities.CreateInstance<PaymentService>(host.Services);
             paymentService.BeginPayment(reservation);
 
-            CheckIfReservationCanBeContinued(reservation);
+            if (!CheckIfReservationCanBeContinued(reservation))
+            {
+                BookingSummary(reservation);
+                return;
+            }
 
             var emailSenderService = ActivatorUtilities.CreateInstance<EmailSenderService>(host.Services);
             emailSenderService.SendConfirmationEmail(reservation);
 
+            dbContext.Reservations.Add(reservation);
+            dbContext.SaveChanges();
+
+            BookingSummary(reservation);
         }
 
-        private static void CheckIfReservationCanBeContinued(Reservation reservation)
+        private static void BookingSummary(Reservation reservation)
+        {
+            Console.WriteLine($"Podsumowanie rezerwacji o numerze: {reservation.ReservationNumber}");
+            Console.WriteLine($"Status rezerwacji: { reservation.IsReservationSuccessful.TranslateToPolish()}");
+            Console.WriteLine($"Status procesu wprowadzania informacji: {reservation.IsBookingSuccessful.TranslateToPolish()}");
+            Console.WriteLine($"Status płatności: {reservation.IsPaymentSuccessful.TranslateToPolish()}");
+            Console.WriteLine($"Status wysłanego maila: {reservation.IsEmailSendSuccessful.TranslateToPolish()}");
+            Console.ReadLine();
+        }
+
+        private static bool CheckIfReservationCanBeContinued(Reservation reservation)
         {
             if (reservation.IsReservationSuccessful == false)
             {
                 Console.WriteLine("Rezerwacja nie powiodła się prosimy spróbować ponownie");
-                return;
+                return false;
             }
+
+            return true;
         }
     }
 }
