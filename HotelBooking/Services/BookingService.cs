@@ -27,23 +27,15 @@ namespace HotelBooking.Services
                 Console.WriteLine($"{hotel.Id};  {hotel.Name}; {hotel.Location};        {hotel.PriceForOnePerson};");
             }
 
-            int chosenHotelId = GetChoosenHotelIdFromUser();
-
-            while (!hotels.Any(x => x.Id == chosenHotelId))
-            {
-                consoleService.WriteToConsole("Podane Id hotelu nie istnieje");
-                chosenHotelId = GetChoosenHotelIdFromUser();
-            }
-
-            var chosenHotel = hotels.FirstOrDefault(x => x.Id == chosenHotelId);
+            var chosenHotel = GetChosenHotelFromUser(hotels);
 
             reservation.ReservationNumber = Guid.NewGuid();
-            reservation.HotelId = chosenHotelId;
+            reservation.HotelId = chosenHotel.Id;
+            reservation.BasePrice = chosenHotel.PriceForOnePerson;
+            reservation.IsPaymentNecessary = chosenHotel.IsPaymentNecessary;
             reservation.Date = GetChosenReservationDateFromUser();
             reservation.HowManyDays = GetNumberOfDaysFromUser();
             reservation.NumberOfPeople = GetNumberOfPeopleFromUser();
-            reservation.BasePrice = chosenHotel.PriceForOnePerson;
-            reservation.IsPaymentNecessary = chosenHotel.IsPaymentNecessary;
             reservation.PriceToPay = reservation.NumberOfPeople * reservation.BasePrice * reservation.HowManyDays;
             reservation.IsBookingSuccessful = true;
             reservation.IsReservationSuccessful = true;
@@ -59,7 +51,7 @@ namespace HotelBooking.Services
             return result;
         }
 
-        private int GetNumberOfDaysFromUser()
+        public int GetNumberOfDaysFromUser()
         {
             consoleService.WriteToConsole("Podaj ile dni ma trwać pobyt");
             var result = consoleService.GetNumberFromUser();
@@ -75,12 +67,18 @@ namespace HotelBooking.Services
             return reservationDate;
         }
 
-        public int GetChoosenHotelIdFromUser()
+        public Hotel GetChosenHotelFromUser(List<Hotel> availableHotels)
         {
             consoleService.WriteToConsole("Podaj Id hotelu w którym chciałbyś zarezerwować pokój");
-            var result = consoleService.GetNumberFromUser();
+            var chosenHotelId = consoleService.GetNumberFromUser();
 
-            return result;
+            while (!availableHotels.Any(x => x.Id == chosenHotelId))
+            {
+                consoleService.WriteToConsole("Podane Id hotelu nie istnieje");
+                chosenHotelId = consoleService.GetNumberFromUser();
+            }
+
+            return availableHotels.FirstOrDefault(x => x.Id == chosenHotelId);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace HotelBooking.Tests
         [Fact]
         public void NumberShouldBeEqualToUserInput()
         {
-            var result = sut.GetChoosenHotelIdFromUser();
+            var result = sut.GetNumberOfDaysFromUser();
 
             Assert.Equal(result, numberWrittenByUser);
         }
@@ -60,6 +60,16 @@ namespace HotelBooking.Tests
             var result = sut.GetChosenReservationDateFromUser();
 
             Assert.Equal(result, reservationDate);
+        }
+
+        [Fact]
+        public void ShouldReturnCorrectHotel()
+        {
+            var hotel = sut.GetChosenHotelFromUser(hotels);
+
+            var expectedHotel = hotels.Find(x => x.Id == numberWrittenByUser);
+
+            Assert.Equal(hotel, expectedHotel);
         }
     }
 }
